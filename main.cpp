@@ -1,7 +1,7 @@
 /*
  * Author: vlt23
  * Creation Date: 2018/03/17
- * Last Modified: 2018/03/21
+ * Last Modified: 2018/03/24
  * Cadena de caracteres cifrada con los siguientes criterios:
     * Los caracteres que no sean letras no se modifican.
     * Cada consonantes se sustituye por la siguiente consonante en el
@@ -34,9 +34,10 @@ int main()
         colaEntrada.push_back(mensaje[i]);
     }
 
+    char letra;
     while (!colaEntrada.isEmpty())
     {
-        char letra = colaEntrada.front();
+        letra = colaEntrada.front();
         // las vocales se apilan...
         if (letra == 'a' || letra == 'e' || letra == 'i'
                 || letra == 'o' || letra == 'u'
@@ -63,6 +64,12 @@ int main()
             colaSalida.push_back(next);
         }
         colaEntrada.pop_front();
+    }
+    // ultimos caracteres son vocales, sacar de la pila
+    while (!pila.isEmpty())
+    {
+        colaSalida.push_back(pila.top());
+        pila.pop();
     }
 
     while (!colaSalida.isEmpty())
